@@ -54,6 +54,26 @@ sc-tc-generalization/
 | XGBoost | **9.77** | **48.84** | 19.90 | 25.27 |
 | MLP (deep learning) | 11.39 | 61.91 | 21.52 | **15.62** |
 
+**R² on the test set:**
+
+| Model | Grouped random split | Leave out Cuprate | Leave out Iron-based | Leave out Other |
+|---|---|---|---|---|
+| Linear Regression | 0.726 | −1.95 | **−0.97** | −37.38 |
+| Random Forest | 0.913 | −1.74 | −1.55 | −11.47 |
+| XGBoost | **0.918** | **−1.46** | −1.43 | −7.99 |
+| MLP (deep learning) | 0.889 | −2.95 | −1.84 | **−2.44** |
+
+![RMSE on the random split vs. unseen chemical families](figures/generalization_rmse.png)
+
+### Key findings
+
+- **High accuracy within known chemistry.** On a random test split grouped by chemical formula, XGBoost predicts Tc with an RMSE of 9.77 K (R² = 0.918), matching the benchmark reported by Hamidieh (2018).
+- **Poor transfer to unseen chemical families.** When an entire family is held out of training, errors rise up to five-fold, and every model obtains a negative R² on every held-out family. In other words, the models predict Tc for a new family less accurately than simply guessing that family's average Tc.
+- **Cuprates are the hardest case.** Cuprates hold the highest Tc values (up to about 140 K) and make up about half the dataset. Without them, the training data contains almost no high-Tc materials, and tree-based models cannot predict values outside the range they were trained on.
+- **The best model depends on the test.** XGBoost is best on the random split and when cuprates are held out, linear regression is best when iron-based superconductors are held out, and the neural network is best when the "Other" family is held out. Ranking models on a random split therefore does not reveal which model will generalize to new chemistry.
+
+**Conclusion:** standard random-split evaluation overstates how useful machine learning is for discovering new superconductor families. These models learn family-specific patterns rather than transferable physics, so cross-family evaluation should be routine when ML is used to screen for new superconductors.
+
 ## Reference
 
 Hamidieh, K. (2018). A data-driven statistical model for predicting the critical temperature of a superconductor. *Computational Materials Science*, 154, 346–354.
