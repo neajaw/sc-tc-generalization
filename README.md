@@ -42,6 +42,7 @@ sc-tc-generalization/
 ├── figures/                  # generated plots
 ├── results/                  # generated metrics (results.csv)
 ├── requirements.txt
+├── LICENSE
 └── README.md
 ```
 
@@ -67,9 +68,9 @@ sc-tc-generalization/
 
 ### Key findings
 
-- **High accuracy within known chemistry.** On a random test split grouped by chemical formula, XGBoost predicts Tc with an RMSE of 9.77 K (R² = 0.918), matching the benchmark reported by Hamidieh (2018).
+- **High accuracy within known chemistry.** On a random test split grouped by chemical formula, XGBoost predicts Tc with an RMSE of 9.77 K (R² = 0.918), close to the benchmark of about 9.5 K reported by Hamidieh (2018).
 - **Poor transfer to unseen chemical families.** When an entire family is held out of training, errors rise up to five-fold, and every model obtains a negative R² on every held-out family. In other words, the models predict Tc for a new family less accurately than simply guessing that family's average Tc.
-- **Cuprates are the hardest case.** Cuprates hold the highest Tc values (up to about 140 K) and make up about half the dataset. Without them, the training data contains almost no high-Tc materials, and tree-based models cannot predict values outside the range they were trained on.
+- **Cuprates are the hardest case.** Cuprates make up about half the dataset and account for almost every material with Tc above about 40 K, reaching about 135 K (a few entries go up to 185 K). Without them, the training data contains almost no high-Tc materials, and tree-based models cannot predict values outside the range they were trained on.
 - **The best model depends on the test.** XGBoost is best on the random split and when cuprates are held out, linear regression is best when iron-based superconductors are held out, and the neural network is best when the "Other" family is held out. Ranking models on a random split therefore does not reveal which model will generalize to new chemistry.
 
 **Conclusion:** standard random-split evaluation overstates how useful machine learning is for discovering new superconductor families. These models learn family-specific patterns rather than transferable physics, so cross-family evaluation should be routine when ML is used to screen for new superconductors.
