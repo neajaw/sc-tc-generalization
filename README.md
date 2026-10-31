@@ -49,12 +49,10 @@ sc-tc-generalization/
 
 | Model | Grouped random split RMSE (K) | Leave out Cuprate | Leave out Iron-based | Leave out Other |
 |---|---|---|---|---|
-| Linear Regression | | | | |
-| Random Forest | | | | |
-| XGBoost | | | | |
-| MLP (deep learning) | | | | |
-
-*Fill in from `results/results.csv` after running the notebook.*
+| Linear Regression | 17.88 | 53.51 | 17.95 | 52.21 |
+| Random Forest | 10.09 | 51.60 | 20.39 | 29.76 |
+| XGBoost | **9.77** | **48.84** | 19.90 | 25.27 |
+| MLP (deep learning) | 11.39 | 61.91 | 21.52 | **15.62** |
 
 ## Reference
 
