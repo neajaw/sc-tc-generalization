@@ -1,0 +1,11 @@
+# Data (downloaded by the notebook)
+*.csv
+!results/*.csv
+*.zip
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+*.pt
+.venv/
+.DS_Store
