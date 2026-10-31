@@ -74,6 +74,14 @@ sc-tc-generalization/
 
 **Conclusion:** standard random-split evaluation overstates how useful machine learning is for discovering new superconductor families. These models learn family-specific patterns rather than transferable physics, so cross-family evaluation should be routine when ML is used to screen for new superconductors.
 
+## Acknowledgments
+
+Code and documentation for this project were developed with the help of Claude, an AI assistant made by Anthropic. I defined the research question, ran all experiments in Google Colab, and reviewed and verified the results.
+
 ## Reference
 
 Hamidieh, K. (2018). A data-driven statistical model for predicting the critical temperature of a superconductor. *Computational Materials Science*, 154, 346–354.
+
+## License
+
+This project is licensed under the MIT License; see [LICENSE](LICENSE).
